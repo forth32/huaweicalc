@@ -54,6 +54,9 @@ public:
         brush1.setStyle(Qt::SolidPattern);
         palette.setBrush(QPalette::Disabled, QPalette::WindowText, brush1);
         CalcDialog->setPalette(palette);
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/icon/icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        CalcDialog->setWindowIcon(icon);
         calcbutton = new QPushButton(CalcDialog);
         calcbutton->setObjectName(QString::fromUtf8("calcbutton"));
         calcbutton->setGeometry(QRect(250, 60, 94, 24));

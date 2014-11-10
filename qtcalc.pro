@@ -22,3 +22,4 @@ SOURCES += calc.cpp \
            encrypt_v1.cpp \
            main.cpp
 LIBS += -lcrypto
+RESOURCES = huaweicalc.qrc

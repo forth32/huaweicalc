@@ -50,6 +50,10 @@
   <property name="windowTitle">
    <string>Huawei calculator</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="huaweicalc.qrc">
+    <normaloff>:/icon/icon.png</normaloff>:/icon/icon.png</iconset>
+  </property>
   <widget class="QPushButton" name="calcbutton">
    <property name="geometry">
     <rect>
@@ -395,7 +399,9 @@
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="huaweicalc.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>calcbutton</sender>
