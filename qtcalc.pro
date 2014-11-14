@@ -3,7 +3,7 @@
 ######################################################################
 
 TEMPLATE = app
-TARGET = 
+TARGET = huaweicalc
 DEPENDPATH += .
 INCLUDEPATH += .
 

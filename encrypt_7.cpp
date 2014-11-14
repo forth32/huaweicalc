@@ -12,7 +12,7 @@
 
 void rehash7_2(int* hash,int* srcbuf) {
 
-int r0,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r12,lr;
+int r4,r5,r6,r7,r10,lr;
 int inthash[30];
 
 memcpy(inthash+1,srcbuf,64);  // переносим 16 слов в inthash
@@ -24,7 +24,7 @@ r5=hash[3];
 //--------- часть 1 --------
 
 #define encpass1(hconst,nbyte,shift,rsum,ra,rb,rc) \
- rsum=ra+rotr32(rsum+inthash[nbyte/4]+(ra&rb|(rc&(~ra)))+hconst,shift); 
+ rsum=ra+rotr32(rsum+inthash[nbyte/4]+((ra&rb)|(rc&(~ra)))+hconst,shift); 
 
 // r4=r6+rotr32(r4+inthash[4/4]+(r6&r7|(r5&(~r6)))+0xD76AA478,25);
 // rs ra        rs          nb   ra rb  rc   ra               sh 
@@ -56,7 +56,7 @@ encpass1(0x49B40821,0x40,10,r6,r7,r5,r4)   // RAM:50D8Aa54
 //rs ra        rs               ra rb  rc   rb
 
 #define encpass2(hconst,nbyte,shift,rsum,ra,rb,rc) \
- rsum=ra+rotr32(rsum+inthash[nbyte/4]+(ra&rb|(rc&(~rb)))+hconst,shift); 
+ rsum=ra+rotr32(rsum+inthash[nbyte/4]+((ra&rb)|(rc&(~rb)))+hconst,shift); 
 
 encpass2(0xF61E2562,0x08,27,r4,r6,r5,r7)   // 50d8aa78
 encpass2(0xC040B340,0x1c,23,r5,r4,r7,r6)   // 50d8aa98
@@ -162,7 +162,7 @@ hash[3]+=lr;
 //
 void rehash7_1(int* hash,char* buf,int len) {
 
-int r0,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r12,lr;
+int r0,r1,r2,r3,r4,r5,r7,r12;
 
 r2=hash[4];
 r7=len;
@@ -211,10 +211,10 @@ if (r7>r3) {
 void encrypt_7(char* imei,char* resbuf,int version) {
 
 int i;
-int r0,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r12,lr;
+int r0,r1,r2,r3,r4,r5,r6,r7,r8,r12,lr;
 unsigned int u1;
-unsigned long long cx;
-unsigned long long rr5,rr12;
+int64_t cx;
+int64_t rr5,rr12;
 
 char buf128[128];
 
@@ -231,6 +231,8 @@ char* buf30=fullbuf+44;
 char cb_201[]={0xB, 0xD,0x11,0x13,0x17,0x1D,0x1F,0x25,0x29,0x2B,0x3B,0x61};
 char cb_2[]={1,   1,   2,   3,   5,   8,   0xD,0x15,0x22,0x37,0x59,0x90};
 char* cb;
+
+char c;
 
 char pattern80[64];
 
@@ -399,39 +401,33 @@ r12=*((int*)(buf17+(r5<<2)));
 r4=0;
 r0=0;
 
+
+// Этап 1 - пытаемся наскрести в buf16 готовых ascii-цифр
+
 for(r2=0;r2<=15;r2++) {
- r3=buf16[r2];
- if ((r3>0x2f)&&(r3 <= 0x39)) {
-  resbuf[r4]=buf16[r2];
-  r4++;
- }
-//50D8B7D4
-
-
- if (r4>7) {
-   r3=0;
-   break;
- }  
- else r3=1; 
+ c=buf16[r2];
+ if ((c>0x2f)&&(c <= 0x39)) resbuf[r4++]=c;
+ if (r4>7) break;   //50D8B7D4
 }
+if (r4 > 7) goto bdone; // набрали все 8 цифр - нам хватит
 
+// Этап 2 - попытка полцчить недостающие цифры.
 
-if (r3 == 0) goto bdone;
+//printf("\n 1cycle: imei=%s r4=%i",imei,r4);
 
-r3=3-r5;
 r6=0;
-r3<<=2;
-u1=r3;  // индекс в buf17
+u1=(3-r5)<<2;    // индекс в buf17
 r5=0xcccccccd;
+rr5=r5&0xffffffff;
 
 do {
   r0=r6^1;
   rr12=r12&0xffffffff;
-  rr5=r5&0xffffffff;
   cx=rr12*rr5;
-  r2=(cx>>32)&0xffffffff;
-  r2=(unsigned int)r2>>3;
-  if (r2 == 0) r0++;
+  r2=((cx>>32)&0xffffffff)>>3;
+  if (r2 == 0) {
+    r0&=1;
+  } 
   else r0=0;
   r3=r2<<1;
   r1=r2<<3;
@@ -442,19 +438,17 @@ do {
   r3&=0xff;
   resbuf[r4++]=r3;
   if (r0 != 0) {
-    r12=buf17[u1];
+    r12=*((int*)(buf17+u1));
     r6=1;
   }
-  if (r4>7) r3=0;
-  else r3=1;
-  if (r12 == 0) r3=0;
-} while (r3!= 0); 
+} while ((r4<8) && (r12 != 0)); 
 
 //50D8B888
 
 if (r4>7) goto bdone;  // наконец наскребли нужное количество цифр
 r12=r5;
 r0=0;
+//printf("\n 2cycle: imei=%s r4=%i",imei,r4);
 
 loc_50D8B8DC:
  if ((r4>7)&&(resbuf[0] != 0)) goto bdone;
@@ -479,7 +473,6 @@ if (r0 == 16) goto bdone;
   goto loc_50D8B8DC;
 //50D8B89C   r4!= 8
 
-  
 //  --- Все, буфер готов ! -------
 bdone:
   if(resbuf[0] == '0') {
