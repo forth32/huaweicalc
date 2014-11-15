@@ -23,3 +23,4 @@ SOURCES += calc.cpp \
            main.cpp
 LIBS += -lcrypto
 RESOURCES = huaweicalc.qrc
+RC_FILE = huaweicalc.rc
