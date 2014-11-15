@@ -139,7 +139,8 @@ public:
         label_6->setObjectName(QString::fromUtf8("label_6"));
         label_6->setGeometry(QRect(20, 20, 341, 20));
         QFont font2;
-        font2.setPointSize(16);
+        font2.setFamily(QString::fromUtf8("Century Schoolbook L"));
+        font2.setPointSize(14);
         font2.setBold(true);
         font2.setWeight(75);
         label_6->setFont(font2);
