@@ -31,6 +31,7 @@ while ((opt = getopt(argc, argv, "rRfF123hH")) != -1) {
      printf(
 "\n\n *** Калькулятор кодов разблокировки модемов HUAWEI ***\n\n\
     %s [-f123] IMEI\n\n\
+    -r - разворот IMEI\n\
     -f - только flash-код\n\
     -1 - только код v1\n\
     -2 - только код v2\n\
