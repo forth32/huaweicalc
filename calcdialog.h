@@ -10,6 +10,7 @@ class CalcDialog: public QDialog, public Ui_CalcDialog {
       CalcDialog(QWidget *parent = 0);
    public slots: 
       void calc();
+      void reverse();
 };
 
     

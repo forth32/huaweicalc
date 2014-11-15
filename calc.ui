@@ -59,7 +59,7 @@
     <rect>
      <x>250</x>
      <y>60</y>
-     <width>94</width>
+     <width>91</width>
      <height>24</height>
     </rect>
    </property>
@@ -73,9 +73,9 @@
   <widget class="QLineEdit" name="imei">
    <property name="geometry">
     <rect>
-     <x>110</x>
+     <x>100</x>
      <y>60</y>
-     <width>131</width>
+     <width>141</width>
      <height>23</height>
     </rect>
    </property>
@@ -149,9 +149,9 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>20</x>
      <y>100</y>
-     <width>71</width>
+     <width>81</width>
      <height>16</height>
     </rect>
    </property>
@@ -208,8 +208,8 @@
     <rect>
      <x>30</x>
      <y>130</y>
-     <width>55</width>
-     <height>15</height>
+     <width>61</width>
+     <height>16</height>
     </rect>
    </property>
    <property name="font">
@@ -228,8 +228,8 @@
     <rect>
      <x>30</x>
      <y>160</y>
-     <width>55</width>
-     <height>15</height>
+     <width>61</width>
+     <height>16</height>
     </rect>
    </property>
    <property name="font">
@@ -248,7 +248,7 @@
     <rect>
      <x>24</x>
      <y>190</y>
-     <width>71</width>
+     <width>81</width>
      <height>20</height>
     </rect>
    </property>
@@ -356,8 +356,8 @@
    <property name="geometry">
     <rect>
      <x>250</x>
-     <y>100</y>
-     <width>94</width>
+     <y>190</y>
+     <width>91</width>
      <height>24</height>
     </rect>
    </property>
@@ -398,7 +398,30 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
+  <widget class="QPushButton" name="ReverseButton">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>100</y>
+     <width>91</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Reverse</string>
+   </property>
+  </widget>
  </widget>
+ <tabstops>
+  <tabstop>imei</tabstop>
+  <tabstop>calcbutton</tabstop>
+  <tabstop>ReverseButton</tabstop>
+  <tabstop>exitbutton</tabstop>
+  <tabstop>v2code</tabstop>
+  <tabstop>v201code</tabstop>
+  <tabstop>v1code</tabstop>
+  <tabstop>flashcode</tabstop>
+ </tabstops>
  <resources>
   <include location="huaweicalc.qrc"/>
  </resources>
@@ -435,8 +458,25 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>ReverseButton</sender>
+   <signal>clicked()</signal>
+   <receiver>CalcDialog</receiver>
+   <slot>reverse()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>295</x>
+     <y>111</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>182</x>
+     <y>120</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>calc()</slot>
+  <slot>reverse()</slot>
  </slots>
 </ui>

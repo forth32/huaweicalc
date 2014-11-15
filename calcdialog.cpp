@@ -11,8 +11,25 @@
 
 CalcDialog::CalcDialog(QWidget *parent) : QDialog(parent) {
       setupUi(this);
+      setWindowFlags (windowFlags() & ~Qt::WindowContextHelpButtonHint); 
       imei->setFocus();
 }
+
+void CalcDialog::reverse() {
+
+char imeibuf[30];
+int i;
+char c;
+
+strcpy(imeibuf,imei->text().toAscii());
+for (i=0;i<7;i++) {
+  c=imeibuf[i];
+  imeibuf[i]=imeibuf[14-i];
+  imeibuf[14-i]=c;
+}
+imei->setText(imeibuf);
+}
+
 
 void CalcDialog::calc() {
   

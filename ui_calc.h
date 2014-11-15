@@ -39,6 +39,7 @@ public:
     QPushButton *exitbutton;
     QLabel *label_6;
     QFrame *line;
+    QPushButton *ReverseButton;
 
     void setupUi(QDialog *CalcDialog)
     {
@@ -59,11 +60,11 @@ public:
         CalcDialog->setWindowIcon(icon);
         calcbutton = new QPushButton(CalcDialog);
         calcbutton->setObjectName(QString::fromUtf8("calcbutton"));
-        calcbutton->setGeometry(QRect(250, 60, 94, 24));
+        calcbutton->setGeometry(QRect(250, 60, 91, 24));
         calcbutton->setDefault(true);
         imei = new QLineEdit(CalcDialog);
         imei->setObjectName(QString::fromUtf8("imei"));
-        imei->setGeometry(QRect(110, 60, 131, 23));
+        imei->setGeometry(QRect(100, 60, 141, 23));
         imei->setMaxLength(15);
         imei->setDragEnabled(true);
         label = new QLabel(CalcDialog);
@@ -83,7 +84,7 @@ public:
         label->setFont(font);
         label_2 = new QLabel(CalcDialog);
         label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setGeometry(QRect(30, 100, 71, 16));
+        label_2->setGeometry(QRect(20, 100, 81, 16));
         QPalette palette2;
         QBrush brush3(QColor(0, 0, 255, 255));
         brush3.setStyle(Qt::SolidPattern);
@@ -98,15 +99,15 @@ public:
         label_2->setFont(font1);
         label_3 = new QLabel(CalcDialog);
         label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setGeometry(QRect(30, 130, 55, 15));
+        label_3->setGeometry(QRect(30, 130, 61, 16));
         label_3->setFont(font1);
         label_4 = new QLabel(CalcDialog);
         label_4->setObjectName(QString::fromUtf8("label_4"));
-        label_4->setGeometry(QRect(30, 160, 55, 15));
+        label_4->setGeometry(QRect(30, 160, 61, 16));
         label_4->setFont(font1);
         label_5 = new QLabel(CalcDialog);
         label_5->setObjectName(QString::fromUtf8("label_5"));
-        label_5->setGeometry(QRect(24, 190, 71, 20));
+        label_5->setGeometry(QRect(24, 190, 81, 20));
         QPalette palette3;
         QBrush brush4(QColor(0, 170, 0, 255));
         brush4.setStyle(Qt::SolidPattern);
@@ -133,7 +134,7 @@ public:
         v201code->setReadOnly(true);
         exitbutton = new QPushButton(CalcDialog);
         exitbutton->setObjectName(QString::fromUtf8("exitbutton"));
-        exitbutton->setGeometry(QRect(250, 100, 94, 24));
+        exitbutton->setGeometry(QRect(250, 190, 91, 24));
         label_6 = new QLabel(CalcDialog);
         label_6->setObjectName(QString::fromUtf8("label_6"));
         label_6->setGeometry(QRect(20, 20, 341, 20));
@@ -147,10 +148,21 @@ public:
         line->setGeometry(QRect(-10, 40, 371, 20));
         line->setFrameShape(QFrame::HLine);
         line->setFrameShadow(QFrame::Sunken);
+        ReverseButton = new QPushButton(CalcDialog);
+        ReverseButton->setObjectName(QString::fromUtf8("ReverseButton"));
+        ReverseButton->setGeometry(QRect(250, 100, 91, 24));
+        QWidget::setTabOrder(imei, calcbutton);
+        QWidget::setTabOrder(calcbutton, ReverseButton);
+        QWidget::setTabOrder(ReverseButton, exitbutton);
+        QWidget::setTabOrder(exitbutton, v2code);
+        QWidget::setTabOrder(v2code, v201code);
+        QWidget::setTabOrder(v201code, v1code);
+        QWidget::setTabOrder(v1code, flashcode);
 
         retranslateUi(CalcDialog);
         QObject::connect(calcbutton, SIGNAL(clicked()), CalcDialog, SLOT(calc()));
         QObject::connect(exitbutton, SIGNAL(clicked()), CalcDialog, SLOT(close()));
+        QObject::connect(ReverseButton, SIGNAL(clicked()), CalcDialog, SLOT(reverse()));
 
         QMetaObject::connectSlotsByName(CalcDialog);
     } // setupUi
@@ -167,6 +179,7 @@ public:
         label_5->setText(QApplication::translate("CalcDialog", "v201 code", 0, QApplication::UnicodeUTF8));
         exitbutton->setText(QApplication::translate("CalcDialog", "Exit", 0, QApplication::UnicodeUTF8));
         label_6->setText(QApplication::translate("CalcDialog", "HUAWEI Unlock code calculator", 0, QApplication::UnicodeUTF8));
+        ReverseButton->setText(QApplication::translate("CalcDialog", "Reverse", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

@@ -213,8 +213,8 @@ void encrypt_7(char* imei,char* resbuf,int version) {
 int i;
 int r0,r1,r2,r3,r4,r5,r6,r7,r8,r12,lr;
 unsigned int u1;
-int64_t cx;
-int64_t rr5,rr12;
+long long cx;
+long long  rr5,rr12;
 
 char buf128[128];
 
