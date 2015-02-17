@@ -71,9 +71,11 @@ if (r0 != 0) {  // 50d87324
 
 
 if (r0 > 0) {
-  if (r0!=8) r0=8;
-  for (i=0;i<r0;i++) buf20[i]=buf1016[r0-1-i];
-  buf20[r0]=0;
+  for (i=0;i<8;i++) { 
+    buf20[i]=buf1016[7-i];
+    if (buf20[i] == 0) buf20[i]='9';
+  }  
+  buf20[8]=0;
 }
 else strcpy(buf20,"99999999");
 
