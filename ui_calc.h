@@ -10,15 +10,15 @@
 #define UI_CALC_H
 
 #include <QtCore/QVariant>
-#include <QtGui/QAction>
-#include <QtGui/QApplication>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QDialog>
-#include <QtGui/QFrame>
-#include <QtGui/QHeaderView>
-#include <QtGui/QLabel>
-#include <QtGui/QLineEdit>
-#include <QtGui/QPushButton>
+#include <QAction>
+#include <QApplication>
+#include <QButtonGroup>
+#include <QDialog>
+#include <QFrame>
+#include <QHeaderView>
+#include <QLabel>
+#include <QLineEdit>
+#include <QPushButton>
 
 QT_BEGIN_NAMESPACE
 
@@ -170,17 +170,17 @@ public:
 
     void retranslateUi(QDialog *CalcDialog)
     {
-        CalcDialog->setWindowTitle(QApplication::translate("CalcDialog", "Huawei calculator", 0, QApplication::UnicodeUTF8));
-        calcbutton->setText(QApplication::translate("CalcDialog", "Calc", 0, QApplication::UnicodeUTF8));
-        imei->setInputMask(QApplication::translate("CalcDialog", "999999999999999; ", 0, QApplication::UnicodeUTF8));
-        label->setText(QApplication::translate("CalcDialog", "IMEI", 0, QApplication::UnicodeUTF8));
-        label_2->setText(QApplication::translate("CalcDialog", "Flash code", 0, QApplication::UnicodeUTF8));
-        label_3->setText(QApplication::translate("CalcDialog", "v1 code", 0, QApplication::UnicodeUTF8));
-        label_4->setText(QApplication::translate("CalcDialog", "v2 code", 0, QApplication::UnicodeUTF8));
-        label_5->setText(QApplication::translate("CalcDialog", "v201 code", 0, QApplication::UnicodeUTF8));
-        exitbutton->setText(QApplication::translate("CalcDialog", "Exit", 0, QApplication::UnicodeUTF8));
-        label_6->setText(QApplication::translate("CalcDialog", "HUAWEI Unlock code calculator", 0, QApplication::UnicodeUTF8));
-        ReverseButton->setText(QApplication::translate("CalcDialog", "Reverse", 0, QApplication::UnicodeUTF8));
+        CalcDialog->setWindowTitle(QApplication::translate("CalcDialog", "Huawei calculator", 0));
+        calcbutton->setText(QApplication::translate("CalcDialog", "Calc", 0));
+        imei->setInputMask(QApplication::translate("CalcDialog", "999999999999999; ", 0));
+        label->setText(QApplication::translate("CalcDialog", "IMEI", 0));
+        label_2->setText(QApplication::translate("CalcDialog", "Flash code", 0));
+        label_3->setText(QApplication::translate("CalcDialog", "v1 code", 0));
+        label_4->setText(QApplication::translate("CalcDialog", "v2 code", 0));
+        label_5->setText(QApplication::translate("CalcDialog", "v201 code", 0));
+        exitbutton->setText(QApplication::translate("CalcDialog", "Exit", 0));
+        label_6->setText(QApplication::translate("CalcDialog", "HUAWEI Unlock code calculator", 0));
+        ReverseButton->setText(QApplication::translate("CalcDialog", "Reverse", 0));
     } // retranslateUi
 
 };

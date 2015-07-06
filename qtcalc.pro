@@ -21,6 +21,7 @@ SOURCES += calc.cpp \
            encrypt_7.cpp \
            encrypt_v1.cpp \
            main.cpp
+QT += widgets
 LIBS += -lcrypto
 RESOURCES = huaweicalc.qrc
 RC_FILE = huaweicalc.rc
