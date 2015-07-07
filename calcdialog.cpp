@@ -21,7 +21,7 @@ char imeibuf[30];
 int i;
 char c;
 
-strcpy(imeibuf,imei->text().toAscii());
+strcpy(imeibuf,imei->text().toLatin1());
 for (i=0;i<7;i++) {
   c=imeibuf[i];
   imeibuf[i]=imeibuf[14-i];
@@ -38,7 +38,7 @@ char codebuf[30];
 QMessageBox errBox;
 
 
-strcpy(imeibuf,imei->text().toAscii());
+strcpy(imeibuf,imei->text().toLatin1());
 if (strlen(imeibuf) != 15) {
   errBox.setText("Incorrect IMEI");
   errBox.exec();
