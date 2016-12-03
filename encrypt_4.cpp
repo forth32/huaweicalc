@@ -204,8 +204,8 @@ memcpy((unsigned char*)hash,hbuf+r5,hlen-r5);
 void enc4_sub_1(char* hbuf, int* zvar) {
   
 int r2,r3;
-int hc[]={0x67452301,0xEFCDAB89,0x98BADCFE,0x10325476};
-char hdata[]={0x80,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,  
+unsigned int hc[]={0x67452301,0xEFCDAB89,0x98BADCFE,0x10325476};
+unsigned char hdata[]={0x80,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,  
                  0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0, 0,0 };
 
 int hlen;
@@ -228,7 +228,7 @@ r3=(hash[4]>>3)&0x3f;
 if (r3>0x37) r2=0x78-r3;
        else  r2=0x38-r3;
 
-enc4_sub_2(hash,hdata,r2);
+enc4_sub_2(hash,(char*)hdata,r2);
 enc4_sub_2(hash,buf26,8);
 memcpy(zvar,hash,16);
 
