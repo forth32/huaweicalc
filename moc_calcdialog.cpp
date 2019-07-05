@@ -1,25 +1,50 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'calcdialog.h'
 **
-** Created by: The Qt Meta Object Compiler version 63 (Qt 4.8.7)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.9.5)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
 #include "calcdialog.h"
+#include <QtCore/qbytearray.h>
+#include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'calcdialog.h' doesn't include <QObject>."
-#elif Q_MOC_OUTPUT_REVISION != 63
-#error "This file was generated using the moc from 4.8.7. It"
+#elif Q_MOC_OUTPUT_REVISION != 67
+#error "This file was generated using the moc from 5.9.5. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
+QT_WARNING_PUSH
+QT_WARNING_DISABLE_DEPRECATED
+struct qt_meta_stringdata_CalcDialog_t {
+    QByteArrayData data[4];
+    char stringdata0[25];
+};
+#define QT_MOC_LITERAL(idx, ofs, len) \
+    Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
+    qptrdiff(offsetof(qt_meta_stringdata_CalcDialog_t, stringdata0) + ofs \
+        - idx * sizeof(QByteArrayData)) \
+    )
+static const qt_meta_stringdata_CalcDialog_t qt_meta_stringdata_CalcDialog = {
+    {
+QT_MOC_LITERAL(0, 0, 10), // "CalcDialog"
+QT_MOC_LITERAL(1, 11, 4), // "calc"
+QT_MOC_LITERAL(2, 16, 0), // ""
+QT_MOC_LITERAL(3, 17, 7) // "reverse"
+
+    },
+    "CalcDialog\0calc\0\0reverse"
+};
+#undef QT_MOC_LITERAL
+
 static const uint qt_meta_data_CalcDialog[] = {
 
  // content:
-       6,       // revision
+       7,       // revision
        0,       // classname
        0,    0, // classinfo
        2,   14, // methods
@@ -29,22 +54,22 @@ static const uint qt_meta_data_CalcDialog[] = {
        0,       // flags
        0,       // signalCount
 
- // slots: signature, parameters, type, tag, flags
-      12,   11,   11,   11, 0x0a,
-      19,   11,   11,   11, 0x0a,
+ // slots: name, argc, parameters, tag, flags
+       1,    0,   24,    2, 0x0a /* Public */,
+       3,    0,   25,    2, 0x0a /* Public */,
+
+ // slots: parameters
+    QMetaType::Void,
+    QMetaType::Void,
 
        0        // eod
-};
-
-static const char qt_meta_stringdata_CalcDialog[] = {
-    "CalcDialog\0\0calc()\0reverse()\0"
 };
 
 void CalcDialog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        Q_ASSERT(staticMetaObject.cast(_o));
         CalcDialog *_t = static_cast<CalcDialog *>(_o);
+        Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->calc(); break;
         case 1: _t->reverse(); break;
@@ -54,31 +79,24 @@ void CalcDialog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
     Q_UNUSED(_a);
 }
 
-const QMetaObjectExtraData CalcDialog::staticMetaObjectExtraData = {
-    0,  qt_static_metacall 
-};
-
 const QMetaObject CalcDialog::staticMetaObject = {
-    { &QDialog::staticMetaObject, qt_meta_stringdata_CalcDialog,
-      qt_meta_data_CalcDialog, &staticMetaObjectExtraData }
+    { &QDialog::staticMetaObject, qt_meta_stringdata_CalcDialog.data,
+      qt_meta_data_CalcDialog,  qt_static_metacall, nullptr, nullptr}
 };
 
-#ifdef Q_NO_DATA_RELOCATION
-const QMetaObject &CalcDialog::getStaticMetaObject() { return staticMetaObject; }
-#endif //Q_NO_DATA_RELOCATION
 
 const QMetaObject *CalcDialog::metaObject() const
 {
-    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+    return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
 void *CalcDialog::qt_metacast(const char *_clname)
 {
-    if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_CalcDialog))
-        return static_cast<void*>(const_cast< CalcDialog*>(this));
+    if (!_clname) return nullptr;
+    if (!strcmp(_clname, qt_meta_stringdata_CalcDialog.stringdata0))
+        return static_cast<void*>(this);
     if (!strcmp(_clname, "Ui_CalcDialog"))
-        return static_cast< Ui_CalcDialog*>(const_cast< CalcDialog*>(this));
+        return static_cast< Ui_CalcDialog*>(this);
     return QDialog::qt_metacast(_clname);
 }
 
@@ -91,7 +109,12 @@ int CalcDialog::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         if (_id < 2)
             qt_static_metacall(this, _c, _id, _a);
         _id -= 2;
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 2)
+            *reinterpret_cast<int*>(_a[0]) = -1;
+        _id -= 2;
     }
     return _id;
 }
+QT_WARNING_POP
 QT_END_MOC_NAMESPACE
